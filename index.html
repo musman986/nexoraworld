@@ -3,316 +3,605 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080d1b">
-<title>NexoraWorld | News, AI & Technology</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101b2b">
+<meta name="description" content="NexoraWorld — world news, AI gadgets, technology and weather updates.">
+<title>NexoraWorld — The World, In Focus</title>
 <style>
-:root {
-  --bg: #080d1b;
-  --panel: #111a2e;
-  --text: #eef3ff;
-  --muted: #9aa8c5;
-  --cyan: #63e6f5;
-  --purple: #a99bff;
+:root{
+  --ink:#142235;--muted:#697789;--paper:#f5f3ee;--white:#fff;
+  --red:#bd332d;--line:#e3e1da;--navy:#101b2b;--gold:#d8b46a;
+  --radius:5px;--shadow:0 12px 35px #14223512;
 }
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: radial-gradient(ellipse at top right,#20204c,var(--bg) 45%);
-  color: var(--text);
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+button{cursor:pointer}
+img{display:block;width:100%;object-fit:cover}
+.wrap{width:min(1200px,92%);margin:auto}
+.topline{background:var(--navy);color:#dce3ed;font:11px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.topline .inner{display:flex;justify-content:space-between;gap:14px;padding:10px 0}
+.masthead{text-align:center;padding:26px 0 20px;background:var(--white)}
+.logo{font-size:clamp(36px,6vw,64px);font-weight:900;letter-spacing:-.065em;line-height:1}
+.logo span{color:var(--red)}
+.tagline{font:11px Arial,sans-serif;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.navbar{background:var(--white);border-top:1px solid var(--line);border-bottom:3px solid var(--ink);position:sticky;top:0;z-index:10}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:52px}
+.navlinks{display:flex;align-items:center;gap:25px;font:700 12px Arial,sans-serif;text-transform:uppercase;letter-spacing:.045em}
+.navlinks a:hover{color:var(--red)}
+.nav-search{border:1px solid var(--line);background:#faf9f6;padding:8px 10px;width:160px;min-width:0;font:12px Arial,sans-serif}
+.breaking{border-bottom:1px solid var(--line);background:#eeece5}
+.breaking-inner{display:flex;align-items:center;gap:13px;padding:10px 0;font:12px Arial,sans-serif}
+.breaking-label{background:var(--red);color:#fff;padding:6px 9px;font-size:10px;font-weight:800;letter-spacing:.08em;white-space:nowrap}
+.breaking-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#344255}
+main{padding-bottom:55px}
+.section-label{display:flex;align-items:center;gap:12px;margin:30px 0 17px;font:800 11px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.section-label:after{content:"";height:1px;background:#cfcfc7;flex:1}
+.section-label span{color:var(--red)}
+.hero-grid{display:grid;grid-template-columns:1.65fr 1fr;gap:22px;margin-top:25px}
+.hero-main,.hero-side{min-width:0}
+.image-link{display:block;overflow:hidden;background:#d8d9d6}
+.image-link img{transition:transform .5s;aspect-ratio:16/9}
+.image-link:hover img{transform:scale(1.035)}
+.hero-main .image-link img{aspect-ratio:1.72/1}
+.story-kicker{font:800 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin:14px 0 8px}
+h1,h2,h3,p{margin-top:0}
+.hero-main h1{font-size:clamp(30px,4vw,49px);line-height:1.04;letter-spacing:-.035em;margin-bottom:12px}
+.dek{font-size:16px;line-height:1.65;color:#566274;margin-bottom:13px}
+.meta{font:11px Arial,sans-serif;color:var(--muted)}
+.side-story{display:grid;grid-template-columns:132px 1fr;gap:14px;padding-bottom:17px;margin-bottom:17px;border-bottom:1px solid var(--line)}
+.side-story .image-link img{aspect-ratio:1.15/1;height:100%;min-height:100px}
+.side-story .story-kicker{margin:1px 0 7px}
+.side-story h3{font-size:20px;line-height:1.15;margin-bottom:8px}
+.side-story p{font-size:13px;line-height:1.45;color:var(--muted);margin-bottom:8px}
+.hero-placeholder{aspect-ratio:16/9;display:grid;place-items:center;background:linear-gradient(135deg,#233b52,#b4a47f);color:white;font:800 34px Arial,sans-serif}
+.featured-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:28px}
+.mini-story .image-link img{aspect-ratio:1.65/1}
+.mini-story h3{font-size:22px;line-height:1.15;margin:8px 0}
+.mini-story p{font-size:14px;line-height:1.5;color:var(--muted);margin-bottom:8px}
+.content-layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:35px;margin-top:35px}
+.section-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:20px}
+.section-heading h2{font-size:28px;letter-spacing:-.035em;margin:0}
+.section-heading a{font:700 11px Arial,sans-serif;color:var(--red);text-transform:uppercase}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.filter{background:transparent;border:1px solid #d4d1c8;color:#586477;padding:8px 12px;font:700 11px Arial,sans-serif}
+.filter.active,.filter:hover{background:var(--ink);border-color:var(--ink);color:white}
+.news-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:23px 18px}
+.news-card{min-width:0}
+.news-card .image-link img{aspect-ratio:1.65/1}
+.news-card .story-kicker{margin:10px 0 6px}
+.news-card h3{font-size:22px;line-height:1.17;margin-bottom:8px}
+.news-card p{font-size:14px;line-height:1.55;color:var(--muted);margin-bottom:9px}
+.read-link{font:700 11px Arial,sans-serif;color:var(--red);text-transform:uppercase;letter-spacing:.04em}
+.empty-state{padding:25px;border:1px solid var(--line);background:#fff;color:var(--muted);font:14px Arial,sans-serif;grid-column:1/-1}
+.sidebar-block{margin-bottom:28px}
+.weather-box{background:var(--navy);color:#fff;padding:21px}
+.weather-box h3{font-size:23px;margin:0 0 5px}
+.weather-box .muted{color:#b6c2d1;font:12px Arial,sans-serif}
+.weather-form{display:flex;gap:6px;margin:15px 0 18px}
+.weather-form input{width:100%;min-width:0;background:#fff;border:0;padding:10px;font:12px Arial,sans-serif;color:var(--ink)}
+.weather-form button{background:var(--gold);border:0;padding:0 12px;font:800 11px Arial,sans-serif}
+.weather-now{display:flex;align-items:center;gap:15px;border-top:1px solid #ffffff24;padding-top:15px}
+.weather-icon{font-size:43px}
+.weather-temp{font:42px Arial,sans-serif;letter-spacing:-2px}
+.weather-details{font:12px/1.7 Arial,sans-serif;color:#d2dae5}
+.weather-note{font:11px/1.5 Arial,sans-serif;color:#b6c2d1;margin-top:12px}
+.sidebar-title{font:800 11px Arial,sans-serif;text-transform:uppercase;letter-spacing:.12em;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:15px}
+.topic-list{list-style:none;padding:0;margin:0}
+.topic-list li{border-bottom:1px solid var(--line)}
+.topic-list a{display:flex;justify-content:space-between;padding:12px 0;font-size:16px}
+.topic-list a:hover{color:var(--red)}
+.topic-list span{font:11px Arial,sans-serif;color:var(--muted)}
+.newsletter{padding:20px;background:#e9e5da}
+.newsletter h3{font-size:22px;margin-bottom:8px}
+.newsletter p{font-size:14px;line-height:1.5;color:#5e6876}
+.newsletter a{display:inline-block;background:var(--ink);color:#fff;padding:10px 13px;font:700 11px Arial,sans-serif}
+.status{font:12px/1.6 Arial,sans-serif;color:var(--muted);padding:8px 0}
+footer{background:var(--navy);color:#dce3ed;padding:35px 0}
+.footer-top{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-bottom:1px solid #ffffff24;padding-bottom:22px}
+.footer-logo{font-size:29px;font-weight:900;letter-spacing:-.05em}
+.footer-logo span{color:#f07069}
+.footer-top p{font:12px Arial,sans-serif;color:#b6c2d1;max-width:350px;line-height:1.6;margin:8px 0 0}
+.footer-bottom{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:17px;font:11px Arial,sans-serif;color:#a9b5c5}
+.hidden{display:none!important}
+@media(max-width:900px){
+ .hero-grid{grid-template-columns:1.25fr 1fr}
+ .side-story{grid-template-columns:100px 1fr;gap:10px}
+ .side-story h3{font-size:17px}
+ .content-layout{grid-template-columns:minmax(0,1fr) 270px;gap:22px}
+ .navlinks{gap:14px}
 }
-a { color: inherit; text-decoration: none; }
-.container { width: min(1100px,92%); margin: auto; }
-header {
-  position: sticky; top: 0; z-index: 5;
-  background: #080d1bee;
-  border-bottom: 1px solid #ffffff18;
-  backdrop-filter: blur(12px);
+@media(max-width:680px){
+ .topline .inner{font-size:10px}
+ .masthead{padding:22px 0 17px}
+ .nav-inner{min-height:49px;flex-wrap:wrap;padding:8px 0}
+ .navlinks{gap:15px;overflow:auto;max-width:100%;font-size:10px}
+ .nav-search{display:none}
+ .hero-grid{grid-template-columns:1fr}
+ .hero-main h1{font-size:36px}
+ .hero-side{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+ .side-story{display:block;margin:0;padding:0;border:0}
+ .side-story .image-link img{aspect-ratio:1.4/1;min-height:0}
+ .side-story h3{font-size:18px}
+ .side-story p{display:none}
+ .featured-strip{grid-template-columns:1fr 1fr}
+ .content-layout{grid-template-columns:1fr}
+ .sidebar{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+ .weather-box{grid-column:1/-1}
+ .news-grid{gap:20px 13px}
+ .news-card h3{font-size:19px}
 }
-.nav {
-  min-height: 75px; display: flex;
-  align-items: center; justify-content: space-between; gap: 15px;
-}
-.brand { font-size: 23px; font-weight: 800; letter-spacing: -1px; }
-.brand span { color: var(--cyan); }
-nav { display: flex; gap: 22px; color: var(--muted); }
-nav a:hover { color: var(--cyan); }
-.pill {
-  border: 1px solid #63e6f555; color: var(--cyan);
-  border-radius: 10px; padding: 10px 14px;
-}
-.hero {
-  padding: 75px 0 60px; display: grid;
-  grid-template-columns: 1.1fr .9fr; gap: 30px;
-  align-items: center;
-}
-.eyebrow {
-  color: var(--cyan); text-transform: uppercase;
-  font-size: 12px; font-weight: bold; letter-spacing: 2px;
-}
-h1 { font-size: clamp(42px,6vw,76px); line-height: 1.04; letter-spacing: -3px; margin: 20px 0; }
-h1 span {
-  background: linear-gradient(90deg,var(--cyan),var(--purple));
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
-.hero p { color: var(--muted); font-size: 18px; line-height: 1.8; max-width: 560px; }
-.button {
-  display: inline-block; padding: 13px 17px; margin: 10px 8px 0 0;
-  border-radius: 11px; background: linear-gradient(100deg,var(--cyan),var(--purple));
-  color: #071020; font-weight: bold;
-}
-.button.secondary { background: #ffffff09; color: var(--text); border: 1px solid #ffffff20; }
-.visual {
-  min-height: 310px; display: grid; place-items: center;
-  position: relative;
-}
-.orbit {
-  width: 260px; height: 260px; border-radius: 50%;
-  border: 1px solid #63e6f555; display: grid; place-items: center;
-  background: radial-gradient(circle,#63e6f522,transparent 70%);
-  box-shadow: 0 0 70px #7777ff16;
-}
-.core {
-  width: 105px; height: 105px; border-radius: 28px;
-  display: grid; place-items: center; font-size: 45px;
-  background: linear-gradient(135deg,#63e6f544,#a99bff44);
-  border: 1px solid #ffffff33;
-}
-.float {
-  position: absolute; padding: 12px 15px; border-radius: 13px;
-  background: var(--panel); border: 1px solid #ffffff20;
-  box-shadow: 0 10px 35px #0005; font-size: 14px;
-}
-.float small { display: block; color: var(--muted); margin-top: 4px; }
-.f1 { top: 20px; right: 0; }
-.f2 { bottom: 25px; left: 0; }
-.section-title {
-  display: flex; justify-content: space-between;
-  align-items: end; gap: 15px; margin: 30px 0 20px;
-}
-h2 { font-size: 32px; margin: 0; letter-spacing: -1px; }
-.section-title p { color: var(--muted); margin-bottom: 0; }
-.live { color: var(--cyan); font-size: 12px; letter-spacing: 1px; }
-.tools { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
-input {
-  flex: 1; min-width: 190px; padding: 13px;
-  border-radius: 10px; border: 1px solid #ffffff20;
-  background: var(--panel); color: white; font-size: 15px;
-}
-.filter {
-  border: 1px solid #ffffff20; background: var(--panel);
-  color: var(--muted); padding: 11px 14px;
-  border-radius: 10px; cursor: pointer;
-}
-.filter.active { color: var(--cyan); border-color: var(--cyan); }
-.news-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 17px; }
-.card {
-  padding: 21px; min-height: 205px; display: flex; flex-direction: column;
-  border: 1px solid #ffffff15; border-radius: 16px;
-  background: linear-gradient(145deg,#151f36,#0d1425);
-  transition: transform .2s,border-color .2s;
-}
-.card:hover { transform: translateY(-4px); border-color: #63e6f566; }
-.category { color: var(--cyan); font-size: 11px; font-weight: bold; letter-spacing: 1px; }
-.card h3 { font-size: 18px; line-height: 1.5; margin: 13px 0 8px; }
-.card p { color: var(--muted); font-size: 14px; line-height: 1.7; }
-.read { color: var(--cyan); font-size: 14px; font-weight: bold; margin-top: auto; }
-.status { color: var(--muted); padding: 15px 0; }
-.features { display: grid; grid-template-columns: repeat(3,1fr); gap: 17px; margin: 45px 0 65px; }
-.feature { padding: 22px; border: 1px solid #ffffff18; border-radius: 15px; background: #ffffff05; }
-.feature .emoji { font-size: 30px; }
-.feature h3 { margin-bottom: 7px; }
-.feature p { color: var(--muted); line-height: 1.7; font-size: 14px; }
-footer { border-top: 1px solid #ffffff18; padding: 25px 0; color: var(--muted); font-size: 13px; }
-.footer-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
-@media(max-width:760px) {
-  nav { display: none; }
-  .hero { grid-template-columns: 1fr; padding-top: 45px; }
-  .visual { min-height: 280px; }
-  .news-grid { grid-template-columns: repeat(2,1fr); }
-}
-@media(max-width:520px) {
-  h1 { letter-spacing: -2px; }
-  .news-grid,.features { grid-template-columns: 1fr; }
-  .section-title { align-items: start; flex-direction: column; }
-  .orbit { width: 220px; height: 220px; }
+@media(max-width:430px){
+ .wrap{width:94%}
+ .logo{font-size:39px}
+ .tagline{font-size:9px;letter-spacing:.15em}
+ .hero-main h1{font-size:32px}
+ .hero-side{grid-template-columns:1fr 1fr}
+ .side-story h3{font-size:16px}
+ .featured-strip{gap:13px}
+ .mini-story h3{font-size:19px}
+ .news-grid{grid-template-columns:1fr}
+ .news-card .image-link img{aspect-ratio:1.7/1}
+ .sidebar{grid-template-columns:1fr}
+ .weather-box{grid-column:auto}
 }
 </style>
 </head>
 <body>
-<header>
-  <div class="container nav">
-    <a class="brand" href="#">✦ Nexora<span>World</span></a>
-    <nav>
-      <a href="#latest">Latest News</a>
-      <a href="#explore">Explore</a>
-      <a href="#about">About</a>
-    </nav>
-    <a class="pill" href="#latest">Explore ↗</a>
+<div class="topline">
+  <div class="wrap inner">
+    <span id="today">THE WORLD, IN FOCUS</span>
+    <span>INDEPENDENT CURIOSITY · GLOBAL PERSPECTIVE</span>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="logo" href="#">NEXORA<span>WORLD</span></a>
+    <div class="tagline">World News · Technology · The Future</div>
   </div>
 </header>
 
-<main>
-  <section class="container hero">
-    <div>
-      <div class="eyebrow">● Your world, in focus</div>
-      <h1>Stay curious.<br>See the <span>bigger picture.</span></h1>
-      <p>World headlines, emerging AI technology, and useful updates — all in one clean, modern place.</p>
-      <a class="button" href="#latest">Read Latest News ↗</a>
-      <a class="button secondary" href="#explore">Explore Topics</a>
+<nav class="navbar">
+  <div class="wrap nav-inner">
+    <div class="navlinks">
+      <a href="#top">Home</a>
+      <a href="#world">World</a>
+      <a href="#gadgets">AI Gadgets</a>
+      <a href="#weather">Weather</a>
+      <a href="#latest">Latest News</a>
     </div>
-    <div class="visual">
-      <div class="orbit"><div class="core">✦</div></div>
-      <div class="float f1">🌍 World News<small>Stories that matter</small></div>
-      <div class="float f2">🤖 AI & Innovation<small>Discover the future</small></div>
+    <input class="nav-search" id="topSearch" type="search" placeholder="Search stories…" aria-label="Search stories">
+  </div>
+</nav>
+
+<div class="breaking">
+  <div class="wrap breaking-inner">
+    <span class="breaking-label">THE LATEST</span>
+    <span id="breakingText" class="breaking-text">Loading the latest stories from NexoraWorld…</span>
+  </div>
+</div>
+
+<main id="top" class="wrap">
+  <div class="section-label"><span>01</span> Today's big stories</div>
+  <section class="hero-grid" id="world">
+    <article class="hero-main" id="heroMain">
+      <a class="image-link" href="#latest"><div class="hero-placeholder">NW</div></a>
+      <div class="story-kicker">Editor's selection</div>
+      <h1>Stories shaping our changing world</h1>
+      <p class="dek">Explore global headlines, emerging technology and ideas that help make sense of what's happening.</p>
+      <div class="meta">NEXORAWORLD DESK · LATEST COVERAGE</div>
+    </article>
+    <div class="hero-side" id="heroSide">
+      <article class="side-story">
+        <a class="image-link" href="#gadgets"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=500&q=80" alt="Artificial intelligence technology" loading="lazy"></a>
+        <div><div class="story-kicker">AI & Innovation</div><h3>Inside the technology changing everyday life</h3><p>Ideas and inventions to watch.</p></div>
+      </article>
+      <article class="side-story">
+        <a class="image-link" href="#latest"><img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=500&q=80" alt="World map and global connections" loading="lazy"></a>
+        <div><div class="story-kicker">Around the world</div><h3>Global perspectives, beyond the headlines</h3><p>Look at the bigger picture.</p></div>
+      </article>
     </div>
   </section>
 
-  <section class="container" id="latest">
-    <div class="section-title">
-      <div><h2>Latest Headlines</h2><p>Recent stories from around the world.</p></div>
-      <span class="live">● LIVE NEWS FEED</span>
-    </div>
-    <div class="tools">
-      <input id="search" type="search" placeholder="Search headlines..." aria-label="Search headlines">
-      <button class="filter active" data-filter="all">All Stories</button>
-      <button class="filter" data-filter="world">World</button>
-      <button class="filter" data-filter="tech">Tech & AI</button>
-    </div>
-    <div id="news" class="news-grid">
-      <p class="status">Loading headlines...</p>
-    </div>
-    <p id="feed-status" class="status">Connecting to news feed...</p>
-  </section>
-
-  <section class="container" id="explore">
-    <div class="section-title"><div><h2>Explore More</h2><p>Ideas and updates for a fast-moving world.</p></div></div>
-    <div class="features">
-      <article class="feature"><div class="emoji">🌍</div><h3>World News</h3><p>Catch up on important stories and global developments.</p></article>
-      <article class="feature"><div class="emoji">🧠</div><h3>AI & Technology</h3><p>Discover smart tools, inventions, and future trends.</p></article>
-      <article class="feature"><div class="emoji">⛅</div><h3>Everyday Updates</h3><p>Find useful information and simple explainers.</p></article>
-    </div>
-  </section>
-
-  <section class="container" id="about" style="padding-bottom:50px">
-    <article class="feature">
-      <h3>About NexoraWorld</h3>
-      <p>NexoraWorld brings world news and technology together in one simple experience. Headlines are loaded from the website's news.json file when available.</p>
+  <div class="section-label"><span>02</span> Featured coverage</div>
+  <section class="featured-strip" id="featured">
+    <article class="mini-story">
+      <a class="image-link" href="#gadgets"><img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=700&q=80" alt="Modern virtual reality technology" loading="lazy"></a>
+      <div class="story-kicker">Future tech</div><h3>New ideas at the edge of innovation</h3><p>Discover the devices and tools influencing tomorrow.</p>
+    </article>
+    <article class="mini-story">
+      <a class="image-link" href="#latest"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=700&q=80" alt="Earth from space" loading="lazy"></a>
+      <div class="story-kicker">Global view</div><h3>A connected world in motion</h3><p>News, discoveries and changes from around the planet.</p>
+    </article>
+    <article class="mini-story">
+      <a class="image-link" href="#weather"><img src="https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=700&q=80" alt="Dramatic clouds in the sky" loading="lazy"></a>
+      <div class="story-kicker">Weather desk</div><h3>Understand the forecast where you are</h3><p>Look up current weather for a city of your choice.</p>
     </article>
   </section>
+
+  <div class="content-layout">
+    <section id="latest">
+      <div class="section-heading"><h2>Latest stories</h2><a href="#latest" id="clearSearch">Clear search ↗</a></div>
+      <div class="filters" aria-label="News categories">
+        <button class="filter active" data-category="all">All stories</button>
+        <button class="filter" data-category="world">World news</button>
+        <button class="filter" data-category="tech">AI & gadgets</button>
+      </div>
+      <div id="newsGrid" class="news-grid">
+        <div class="empty-state">Loading headlines from your existing news.json feed…</div>
+      </div>
+      <p id="feedStatus" class="status">Connecting to the news feed…</p>
+    </section>
+
+    <aside class="sidebar">
+      <section class="sidebar-block weather-box" id="weather">
+        <h3>Weather report</h3>
+        <div class="muted">Live conditions by city</div>
+        <form id="weatherForm" class="weather-form">
+          <input id="cityInput" type="text" placeholder="Enter a city…" value="London" aria-label="City for weather">
+          <button type="submit">GO</button>
+        </form>
+        <div id="weatherResult">
+          <div class="weather-now"><div class="weather-icon">⛅</div><div><div class="weather-temp">—°</div><div class="weather-details">Enter a city to load weather.</div></div></div>
+        </div>
+        <div class="weather-note">Weather data via Open-Meteo. An internet connection is required.</div>
+      </section>
+
+      <section class="sidebar-block" id="gadgets">
+        <div class="sidebar-title">Explore topics</div>
+        <ul class="topic-list">
+          <li><a href="#latest" data-topic="world">World affairs <span>01 ↗</span></a></li>
+          <li><a href="#latest" data-topic="tech">AI & gadgets <span>02 ↗</span></a></li>
+          <li><a href="#weather">Weather & climate <span>03 ↗</span></a></li>
+          <li><a href="#featured">Science & innovation <span>04 ↗</span></a></li>
+        </ul>
+      </section>
+
+      <section class="sidebar-block newsletter">
+        <div class="story-kicker">The Nexora briefing</div>
+        <h3>Stay informed.</h3>
+        <p>Use search and categories to find the stories that matter to you. New headlines are loaded from the existing site feed.</p>
+        <a href="#latest">EXPLORE THE NEWS ↗</a>
+      </section>
+    </aside>
+  </div>
 </main>
 
 <footer>
-  <div class="container footer-row">
-    <span>© <span id="year"></span> NexoraWorld</span>
-    <span>Curiosity connects us to the world.</span>
+  <div class="wrap">
+    <div class="footer-top">
+      <div><div class="footer-logo">NEXORA<span>WORLD</span></div><p>World news, AI gadgets and useful updates — bringing a global perspective to curious minds.</p></div>
+      <div><div class="sidebar-title" style="border-color:#ffffff45">Discover</div><p><a href="#world">World News</a> · <a href="#gadgets">AI & Gadgets</a> · <a href="#weather">Weather</a></p></div>
+    </div>
+    <div class="footer-bottom"><span>© <span id="year"></span> NexoraWorld</span><span>Stay curious. See the bigger picture.</span></div>
   </div>
 </footer>
 
 <script>
-const newsBox = document.getElementById("news");
-const feedStatus = document.getElementById("feed-status");
-const searchInput = document.getElementById("search");
-let stories = [];
-let filter = "all";
+(() => {
+  const $ = id => document.getElementById(id);
+  const newsGrid = $("newsGrid");
+  const feedStatus = $("feedStatus");
+  let allStories = [];
+  let activeCategory = "all";
+  let searchTerm = "";
 
-document.getElementById("year").textContent = new Date().getFullYear();
+  $("year").textContent = new Date().getFullYear();
+  $("today").textContent = new Date().toLocaleDateString(undefined, {
+    weekday: "long", year: "numeric", month: "long", day: "numeric"
+  }).toUpperCase();
 
-function clean(value) {
-  return String(value || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
-}
+  const imageFallbacks = {
+    world: "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=900&q=80",
+    tech: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=80",
+    science: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80"
+  };
 
-function category(story) {
-  const text = (clean(story.title) + " " + clean(story.description) + " " + clean(story.category)).toLowerCase();
-  return /ai|artificial intelligence|technology|tech|digital|robot|cyber|software|gadget/.test(text) ? "tech" : "world";
-}
-
-function renderNews() {
-  const term = searchInput.value.toLowerCase().trim();
-  const filtered = stories.filter(story => {
-    const matchesFilter = filter === "all" || category(story) === filter;
-    const matchesSearch = (clean(story.title) + " " + clean(story.description)).toLowerCase().includes(term);
-    return matchesFilter && matchesSearch;
-  });
-
-  newsBox.replaceChildren();
-
-  if (!filtered.length) {
-    newsBox.innerHTML = '<p class="status">No matching stories found. Try another search.</p>';
-    return;
+  function text(value) {
+    if (value == null) return "";
+    if (typeof value === "string") {
+      const node = document.createElement("div");
+      node.innerHTML = value;
+      return (node.textContent || "").replace(/\s+/g, " ").trim();
+    }
+    return String(value);
   }
 
-  filtered.slice(0,18).forEach(story => {
+  function getCategory(story) {
+    const value = (text(story.title) + " " + text(story.description) + " " +
+      text(story.category) + " " + text(story.source)).toLowerCase();
+    return /artificial intelligence|\bai\b|gadget|robot|smartphone|technology|tech|digital|software|cyber|device|chip|app\b/.test(value)
+      ? "tech" : "world";
+  }
+
+  function getImage(story) {
+    const candidates = [
+      story.image, story.imageUrl, story.image_url, story.thumbnail,
+      story.thumbnailUrl, story.thumbnail_url, story.enclosure && story.enclosure.url,
+      story.media && story.media.url
+    ];
+    const image = candidates.find(v => typeof v === "string" && /^https?:\/\//i.test(v));
+    return image || imageFallbacks[getCategory(story)] || imageFallbacks.world;
+  }
+
+  function getLink(story) {
+    const link = story.link || story.url || story.guid || "";
+    return /^https?:\/\//i.test(link) ? link : "";
+  }
+
+  function getDate(story) {
+    const raw = story.date || story.pubDate || story.published || story.publishedAt || "";
+    if (!raw) return "";
+    const parsed = new Date(raw);
+    return Number.isNaN(parsed.getTime())
+      ? text(raw).slice(0, 35)
+      : parsed.toLocaleDateString(undefined, {month:"short",day:"numeric",year:"numeric"});
+  }
+
+  function storyDescription(story) {
+    return text(story.description || story.summary || story.contentSnippet || story.content || "");
+  }
+
+  function makeImage(src, alt, aspect) {
+    const a = document.createElement("a");
+    a.className = "image-link";
+    a.href = "#latest";
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = alt;
+    img.loading = "lazy";
+    img.onerror = () => {
+      img.onerror = null;
+      img.src = imageFallbacks.world;
+    };
+    if (aspect) img.style.aspectRatio = aspect;
+    a.appendChild(img);
+    return a;
+  }
+
+  function makeStoryCard(story) {
     const card = document.createElement("article");
-    card.className = "card";
+    card.className = "news-card";
+    const category = getCategory(story);
+    const link = getLink(story);
+    card.appendChild(makeImage(getImage(story), text(story.title) || "News image", "1.65 / 1"));
 
-    const label = document.createElement("span");
-    label.className = "category";
-    label.textContent = category(story) === "tech" ? "TECH & AI" : "WORLD";
+    const kicker = document.createElement("div");
+    kicker.className = "story-kicker";
+    kicker.textContent = category === "tech" ? "AI & Gadgets" : "World News";
+    card.appendChild(kicker);
 
-    const title = document.createElement("h3");
-    title.textContent = clean(story.title) || "Untitled story";
+    const h3 = document.createElement("h3");
+    h3.textContent = text(story.title) || "Untitled story";
+    card.appendChild(h3);
 
     const desc = document.createElement("p");
-    desc.textContent = clean(story.description || story.summary || "Open the story to read more.");
+    const summary = storyDescription(story);
+    desc.textContent = summary.length > 155 ? summary.slice(0,152).trim() + "…" : summary;
+    card.appendChild(desc);
 
-    const link = document.createElement("a");
-    link.className = "read";
-    const url = story.link || story.url || "";
-    if (/^https?:\/\//i.test(url)) {
-      link.href = url;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.textContent = "Read full story ↗";
-    } else {
-      link.href = "#";
-      link.textContent = "Link unavailable";
-    }
+    const meta = document.createElement("div");
+    meta.className = "meta";
+    meta.textContent = getDate(story);
+    card.appendChild(meta);
 
-    card.append(label,title,desc,link);
-    newsBox.appendChild(card);
-  });
-}
-
-document.querySelectorAll(".filter").forEach(button => {
-  button.addEventListener("click", () => {
-    document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
-    button.classList.add("active");
-    filter = button.dataset.filter;
-    renderNews();
-  });
-});
-
-searchInput.addEventListener("input", renderNews);
-
-async function loadNews() {
-  try {
-    const response = await fetch("./news.json?updated=" + Date.now(), {cache:"no-store"});
-    if (!response.ok) throw new Error("news.json returned " + response.status);
-
-    const data = await response.json();
-    const items = Array.isArray(data) ? data : (data.articles || data.items || data.news || []);
-
-    stories = items.map(item => ({
-      title: item.title || item.name,
-      description: item.description || item.summary || item.contentSnippet || item.content || "",
-      link: item.link || item.url || item.guid || "",
-      category: item.category || ""
-    })).filter(item => item.title);
-
-    if (!stories.length) throw new Error("No headlines found in news.json");
-
-    feedStatus.textContent = "Loaded " + stories.length + " headlines.";
-    renderNews();
-  } catch (error) {
-    newsBox.innerHTML =
-      '<article class="card"><span class="category">NEWS FEED</span><h3>Headlines could not load</h3><p>Check that news.json exists next to index.html and contains a valid JSON list.</p><a class="read" href="./news.json">Open news.json ↗</a></article>';
-    feedStatus.textContent = "News feed unavailable: " + error.message;
+    const read = document.createElement("a");
+    read.className = "read-link";
+    read.style.marginTop = "12px";
+    read.textContent = link ? "Read full story ↗" : "Source link unavailable";
+    read.href = link || "#";
+    if (link) { read.target = "_blank"; read.rel = "noopener noreferrer"; }
+    card.appendChild(read);
+    return card;
   }
-}
-loadNews();
+
+  function renderNews() {
+    const filtered = allStories.filter(story => {
+      const cat = getCategory(story);
+      const matchesCategory = activeCategory === "all" || cat === activeCategory;
+      const search = (text(story.title) + " " + storyDescription(story) + " " + text(story.category)).toLowerCase();
+      return matchesCategory && search.includes(searchTerm);
+    });
+
+    newsGrid.replaceChildren();
+    if (!filtered.length) {
+      const empty = document.createElement("div");
+      empty.className = "empty-state";
+      empty.textContent = allStories.length
+        ? "No stories match your search. Try another keyword or category."
+        : "No headlines are available yet. Check that news.json is present and contains a list of stories.";
+      newsGrid.appendChild(empty);
+      return;
+    }
+    filtered.slice(0, 30).forEach(story => newsGrid.appendChild(makeStoryCard(story)));
+  }
+
+  function renderHero() {
+    if (!allStories.length) return;
+    const first = allStories[0];
+    const hero = $("heroMain");
+    hero.replaceChildren();
+
+    const image = makeImage(getImage(first), text(first.title) || "Featured news", "1.72 / 1");
+    const link = getLink(first);
+    if (link) image.href = link;
+    hero.appendChild(image);
+
+    const kicker = document.createElement("div");
+    kicker.className = "story-kicker";
+    kicker.textContent = "Editor's selection · " + (getCategory(first) === "tech" ? "AI & Gadgets" : "World News");
+    hero.appendChild(kicker);
+
+    const title = document.createElement("h1");
+    title.textContent = text(first.title) || "Today's big story";
+    hero.appendChild(title);
+
+    const desc = document.createElement("p");
+    desc.className = "dek";
+    const summary = storyDescription(first);
+    desc.textContent = summary.length > 230 ? summary.slice(0,227).trim() + "…" : summary || "The latest story from the NexoraWorld news feed.";
+    hero.appendChild(desc);
+
+    const meta = document.createElement("div");
+    meta.className = "meta";
+    meta.textContent = (text(first.source) || "NEXORAWORLD NEWS DESK") + (getDate(first) ? " · " + getDate(first) : "");
+    hero.appendChild(meta);
+
+    const side = $("heroSide");
+    side.replaceChildren();
+    allStories.slice(1,3).forEach(story => {
+      const article = document.createElement("article");
+      article.className = "side-story";
+      const a = makeImage(getImage(story), text(story.title) || "News image");
+      const url = getLink(story);
+      if (url) a.href = url;
+      article.appendChild(a);
+
+      const content = document.createElement("div");
+      const label = document.createElement("div");
+      label.className = "story-kicker";
+      label.textContent = getCategory(story) === "tech" ? "AI & Gadgets" : "Around the world";
+      content.appendChild(label);
+      const h3 = document.createElement("h3");
+      h3.textContent = text(story.title) || "Latest story";
+      content.appendChild(h3);
+      const p = document.createElement("p");
+      const s = storyDescription(story);
+      p.textContent = s.length > 95 ? s.slice(0,92).trim() + "…" : s;
+      content.appendChild(p);
+      article.appendChild(content);
+      side.appendChild(article);
+    });
+
+    $("breakingText").textContent = allStories.slice(0,5).map(s => text(s.title)).filter(Boolean).join("   •   ");
+  }
+
+  async function loadNews() {
+    try {
+      const response = await fetch("./news.json?v=" + Date.now(), {cache:"no-store"});
+      if (!response.ok) throw new Error("Could not load news.json (HTTP " + response.status + ").");
+      const data = await response.json();
+      const items = Array.isArray(data) ? data : (data.articles || data.items || data.news || []);
+      allStories = items.filter(item => item && (item.title || item.name)).map(item => ({
+        ...item,
+        title: item.title || item.name,
+        description: item.description || item.summary || item.contentSnippet || item.content || ""
+      }));
+
+      if (!allStories.length) throw new Error("news.json loaded, but no story titles were found.");
+      renderHero();
+      renderNews();
+      feedStatus.textContent = "Showing " + allStories.length + " stories from your existing news feed.";
+    } catch (error) {
+      feedStatus.textContent = "News feed issue: " + error.message;
+      newsGrid.innerHTML = "";
+      const msg = document.createElement("div");
+      msg.className = "empty-state";
+      msg.textContent = "Your design has loaded, but the news feed could not be read. Check that news.json is in the same folder as index.html and contains valid JSON.";
+      newsGrid.appendChild(msg);
+    }
+  }
+
+  function setCategory(category) {
+    activeCategory = category;
+    document.querySelectorAll(".filter").forEach(button => {
+      button.classList.toggle("active", button.dataset.category === category);
+    });
+    renderNews();
+  }
+
+  document.querySelectorAll(".filter").forEach(button => {
+    button.addEventListener("click", () => setCategory(button.dataset.category));
+  });
+
+  function search(value) {
+    searchTerm = value.trim().toLowerCase();
+    $("topSearch").value = value;
+    $("searchUnused");
+    renderNews();
+  }
+  $("topSearch").addEventListener("input", e => search(e.target.value));
+  $("clearSearch").addEventListener("click", e => {
+    e.preventDefault();
+    $("topSearch").value = "";
+    searchTerm = "";
+    setCategory("all");
+    renderNews();
+  });
+  document.querySelectorAll("[data-topic]").forEach(a => {
+    a.addEventListener("click", () => {
+      setCategory(a.dataset.topic);
+    });
+  });
+
+  // Weather uses the free Open-Meteo geocoding and forecast APIs (no API key required).
+  const weatherCodes = {
+    0:["☀️","Clear sky"],1:["🌤️","Mainly clear"],2:["⛅","Partly cloudy"],
+    3:["☁️","Overcast"],45:["🌫️","Fog"],48:["🌫️","Rime fog"],
+    51:["🌦️","Light drizzle"],53:["🌦️","Drizzle"],55:["🌧️","Dense drizzle"],
+    61:["🌦️","Light rain"],63:["🌧️","Rain"],65:["🌧️","Heavy rain"],
+    71:["🌨️","Light snow"],73:["❄️","Snow"],75:["❄️","Heavy snow"],
+    80:["🌦️","Rain showers"],81:["🌧️","Rain showers"],82:["⛈️","Heavy showers"],
+    95:["⛈️","Thunderstorm"],96:["⛈️","Thunderstorm with hail"],99:["⛈️","Severe thunderstorm"]
+  };
+
+  async function loadWeather(city) {
+    const box = $("weatherResult");
+    box.textContent = "Loading weather…";
+    try {
+      const geoResponse = await fetch("https://geocoding-api.open-meteo.com/v1/search?name=" + encodeURIComponent(city) + "&count=1&language=en&format=json");
+      if (!geoResponse.ok) throw new Error("City search failed.");
+      const geo = await geoResponse.json();
+      if (!geo.results || !geo.results.length) throw new Error("City not found. Try another city name.");
+      const place = geo.results[0];
+      const url = "https://api.open-meteo.com/v1/forecast?latitude=" + place.latitude +
+        "&longitude=" + place.longitude + "&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&timezone=auto";
+      const weatherResponse = await fetch(url);
+      if (!weatherResponse.ok) throw new Error("Weather service is unavailable.");
+      const data = await weatherResponse.json();
+      const current = data.current;
+      const info = weatherCodes[current.weather_code] || ["🌡️","Current conditions"];
+      box.replaceChildren();
+
+      const now = document.createElement("div");
+      now.className = "weather-now";
+      const icon = document.createElement("div");
+      icon.className = "weather-icon";
+      icon.textContent = info[0];
+      now.appendChild(icon);
+
+      const details = document.createElement("div");
+      const temp = document.createElement("div");
+      temp.className = "weather-temp";
+      temp.textContent = Math.round(current.temperature_2m) + "°";
+      details.appendChild(temp);
+      const lines = document.createElement("div");
+      lines.className = "weather-details";
+      lines.textContent = place.name + (place.country ? ", " + place.country : "") +
+        "\n" + info[1] + "\nFeels like " + Math.round(current.apparent_temperature) + "°C" +
+        "\nHumidity " + current.relative_humidity_2m + "% · Wind " + Math.round(current.wind_speed_10m) + " km/h";
+      lines.style.whiteSpace = "pre-line";
+      details.appendChild(lines);
+      now.appendChild(details);
+      box.appendChild(now);
+    } catch (error) {
+      box.textContent = error.message + " Check your internet connection and try again.";
+    }
+  }
+
+  $("weatherForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const city = $("cityInput").value.trim();
+    if (city) loadWeather(city);
+  });
+
+  loadNews();
+  loadWeather("London");
+})();
 </script>
 </body>
 </html>
