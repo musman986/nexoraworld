@@ -1,14 +1,318 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="NexoraWorld — world headlines and technology updates"><meta name="theme-color" content="#080d19"><title>NexoraWorld — World News & AI</title>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d1b">
+<title>NexoraWorld | News, AI & Technology</title>
 <style>
-:root{--bg:#080d19;--panel:#10182a;--text:#f4f7ff;--muted:#a7b3ca;--line:#ffffff19;--accent:#9687ff;--cyan:#5be2d0}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#5648be30,transparent 36%),radial-gradient(ellipse at 90% 20%,#1ebeb21a,transparent 30%),var(--bg);color:var(--text);font:16px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 36px));margin:auto}.topbar{position:sticky;top:0;z-index:5;background:#080d19dc;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.nav{height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:10px;font-weight:850;font-size:1.18rem}.logo{display:grid;place-items:center;width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,var(--accent),var(--cyan));color:#07111f;font-weight:950}.brand span span{color:var(--cyan)}.navlinks{display:flex;gap:24px;color:var(--muted);font-size:.92rem}.navlinks a:hover{color:white}.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;padding:11px 16px;font-weight:750;border:1px solid var(--line)}.primary{background:linear-gradient(100deg,#9687ff,#5be2d0);color:#08101c;border:0}.secondary{background:#ffffff08}.hero{padding:66px 0 36px}.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}.eyebrow{display:inline-block;color:#d0cbff;background:#9687ff18;border:1px solid #9687ff55;border-radius:999px;padding:7px 12px;font-size:.76rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.dot{display:inline-block;width:7px;height:7px;background:#53e1b1;border-radius:50%;margin-right:7px}.hero h1{font-size:clamp(2.6rem,6vw,5rem);letter-spacing:-.065em;line-height:1.02;margin:20px 0}.hero h1 em{font-style:normal;background:linear-gradient(90deg,#aaa0ff,#5be2d0);background-clip:text;color:transparent}.hero p,.sub{color:var(--muted)}.hero p{font-size:1.08rem;max-width:610px;margin:0 0 25px}.actions{display:flex;flex-wrap:wrap;gap:12px}.hero-art{min-height:300px;border:1px solid var(--line);border-radius:28px;overflow:hidden;position:relative;background:linear-gradient(145deg,#171d3e,#101b2b 55%,#0c3035);padding:26px;display:flex;flex-direction:column;justify-content:space-between}.orb{position:absolute;width:230px;height:230px;border-radius:50%;right:-30px;top:20px;background:radial-gradient(circle at 35% 30%,#c6c1ff,#8b7cff 26%,#3b4f99 57%,#15213d 72%);box-shadow:inset -24px -18px 40px #080d1977,0 0 70px #7d70ff33}.orbit{position:absolute;right:-15px;top:70px;width:250px;height:115px;border:1px solid #b8b1ff77;border-radius:50%;transform:rotate(-28deg)}.orbit.two{transform:rotate(48deg);width:260px;height:140px;right:-22px;top:58px}.art-label{position:relative;z-index:1;font-size:.75rem;color:#c8d4f0;letter-spacing:.14em}.art-bottom{position:relative;z-index:1;max-width:235px}.art-bottom strong{display:block;font-size:1.4rem;line-height:1.2;margin-bottom:8px}.art-bottom span{font-size:.88rem;color:#b4c0d7}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}.stat{border-top:1px solid var(--line);padding-top:13px}.stat strong{display:block}.stat span{font-size:.82rem;color:var(--muted)}.section{padding:32px 0 24px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:20px}.kicker{font-size:.76rem;text-transform:uppercase;letter-spacing:.15em;color:var(--cyan);font-weight:800}.section h2{font-size:clamp(1.65rem,3vw,2.25rem);letter-spacing:-.04em;margin:5px 0 0}.sub{margin:7px 0 0}.searchbox{display:flex;gap:10px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 13px;min-width:min(280px,100%)}.searchbox input{width:100%;background:transparent;border:0;outline:0;color:white;font:inherit}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.filter{background:#ffffff08;border:1px solid var(--line);border-radius:999px;padding:8px 13px;color:var(--muted);font:inherit;font-size:.87rem;cursor:pointer}.filter.active,.filter:hover{background:#9687ff25;border-color:#9687ff88;color:white}.news-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.news-card{background:linear-gradient(145deg,#141e32,#0e1626);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;min-height:215px;transition:transform .2s,border-color .2s}.news-card:hover{transform:translateY(-3px);border-color:#9687ff88}.card-meta{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:17px}.tag{border-radius:999px;padding:5px 9px;background:#5be2d018;color:#72e8d9;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em}.date{font-size:.76rem;color:var(--muted)}.news-card h3{font-size:1.08rem;line-height:1.4;margin:0 0 16px}.card-foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--muted);font-size:.82rem;padding-top:12px}.read{color:#c8c2ff;font-weight:750}.empty{grid-column:1/-1;text-align:center;padding:35px;border:1px dashed var(--line);border-radius:16px;color:var(--muted)}.status{font-size:.82rem;color:var(--muted);margin-top:14px}.status strong{color:var(--cyan)}.feature-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0 30px}.feature{border:1px solid var(--line);background:#ffffff06;border-radius:18px;padding:20px}.feature-icon{font-size:1.45rem;margin-bottom:14px}.feature h3{margin:0 0 6px;font-size:1.05rem}.feature p{margin:0;color:var(--muted);font-size:.9rem}.footer{border-top:1px solid var(--line);margin-top:50px;padding:28px 0 36px;color:var(--muted);font-size:.85rem}.footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.footer strong{color:white}@media(max-width:800px){.hero-grid{grid-template-columns:1fr}.hero-art{min-height:255px}.news-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.navlinks{display:none}.hero{padding-top:45px}}@media(max-width:560px){.wrap{width:calc(100% - 24px)}.nav{height:62px}.hero{padding-top:35px}.hero h1{font-size:2.65rem}.hero p{font-size:1rem}.news-grid,.feature-row{grid-template-columns:1fr}.section-head{align-items:stretch;flex-direction:column}.searchbox{min-width:0}.news-card{min-height:180px}.hero-art{min-height:235px;padding:20px}.orb{width:180px;height:180px}.orbit{width:200px}.art-bottom strong{font-size:1.25rem}}
-</style></head><body>
-<header class="topbar"><div class="wrap nav"><a class="brand" href="#"><span class="logo">N</span><span>Nexora<span>World</span></span></a><nav class="navlinks"><a href="#headlines">World News</a><a href="#technology">Technology</a><a href="#about">About</a></nav><a class="btn secondary" href="#headlines">Explore ↘</a></div></header>
-<main><section class="hero"><div class="wrap hero-grid"><div><span class="eyebrow"><span class="dot"></span>Your world, in focus</span><h1>Stay curious.<br>Stay <em>informed.</em></h1><p>World headlines and technology updates, gathered in one clear, modern place. Read the story at its original publisher with one click.</p><div class="actions"><a class="btn primary" href="#headlines">Read latest headlines ↗</a><a class="btn secondary" href="#technology">Explore technology</a></div><div class="stats"><div class="stat"><strong>Global</strong><span>World headlines</span></div><div class="stat"><strong>Fresh</strong><span>Scheduled updates</span></div><div class="stat"><strong>Direct</strong><span>Publisher links</span></div></div></div><div class="hero-art"><div class="orb"></div><div class="orbit"></div><div class="orbit two"></div><div class="art-label">NEXORAWORLD / BRIEFING</div><div class="art-bottom"><strong>The world moves fast. Get the signal, not the noise.</strong><span>A smarter starting point for your daily reading.</span></div></div></div></section>
-<section class="section" id="headlines"><div class="wrap"><div class="section-head"><div><div class="kicker">The latest</div><h2>Live World Headlines</h2><p class="sub">Automatically loaded from the site's news feed.</p></div><label class="searchbox"><span>⌕</span><input id="search" type="search" placeholder="Search headlines…" aria-label="Search headlines"></label></div><div class="filters"><button class="filter active" data-filter="all">All headlines</button><button class="filter" data-filter="world">World</button><button class="filter" data-filter="technology">Technology</button></div><div id="news-grid" class="news-grid"><div class="empty">Loading the latest headlines…</div></div><div class="status" id="status" aria-live="polite">Checking the news feed…</div></div></section>
-<section class="section" id="technology"><div class="wrap"><div class="section-head"><div><div class="kicker">Explore more</div><h2>Ideas shaping tomorrow</h2><p class="sub">A quick guide to the topics NexoraWorld is built to cover.</p></div></div><div class="feature-row"><article class="feature"><div class="feature-icon">🌍</div><h3>World & Current Affairs</h3><p>Keep up with major developments and global stories from established publishers.</p></article><article class="feature"><div class="feature-icon">🤖</div><h3>AI & Emerging Tech</h3><p>Discover new tools, research, and technology stories as the site expands.</p></article><article class="feature"><div class="feature-icon">🔎</div><h3>Read the source</h3><p>Headlines link to their original publisher so you can read the full reporting there.</p></article></div></div></section>
-<section class="section" id="about"><div class="wrap"><div class="feature" style="padding:24px"><div class="kicker">About NexoraWorld</div><h2 style="margin-top:6px">A simple window on a changing world.</h2><p class="sub">NexoraWorld organizes headlines for discovery. Article reporting belongs to the original publishers; select a headline to visit its source.</p></div></div></section></main>
-<footer class="footer"><div class="wrap footer-inner"><div><strong>NexoraWorld</strong> · World news & technology</div><div>Independent headline directory · Visit publishers for full stories</div></div></footer>
+:root {
+  --bg: #080d1b;
+  --panel: #111a2e;
+  --text: #eef3ff;
+  --muted: #9aa8c5;
+  --cyan: #63e6f5;
+  --purple: #a99bff;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(ellipse at top right,#20204c,var(--bg) 45%);
+  color: var(--text);
+}
+a { color: inherit; text-decoration: none; }
+.container { width: min(1100px,92%); margin: auto; }
+header {
+  position: sticky; top: 0; z-index: 5;
+  background: #080d1bee;
+  border-bottom: 1px solid #ffffff18;
+  backdrop-filter: blur(12px);
+}
+.nav {
+  min-height: 75px; display: flex;
+  align-items: center; justify-content: space-between; gap: 15px;
+}
+.brand { font-size: 23px; font-weight: 800; letter-spacing: -1px; }
+.brand span { color: var(--cyan); }
+nav { display: flex; gap: 22px; color: var(--muted); }
+nav a:hover { color: var(--cyan); }
+.pill {
+  border: 1px solid #63e6f555; color: var(--cyan);
+  border-radius: 10px; padding: 10px 14px;
+}
+.hero {
+  padding: 75px 0 60px; display: grid;
+  grid-template-columns: 1.1fr .9fr; gap: 30px;
+  align-items: center;
+}
+.eyebrow {
+  color: var(--cyan); text-transform: uppercase;
+  font-size: 12px; font-weight: bold; letter-spacing: 2px;
+}
+h1 { font-size: clamp(42px,6vw,76px); line-height: 1.04; letter-spacing: -3px; margin: 20px 0; }
+h1 span {
+  background: linear-gradient(90deg,var(--cyan),var(--purple));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero p { color: var(--muted); font-size: 18px; line-height: 1.8; max-width: 560px; }
+.button {
+  display: inline-block; padding: 13px 17px; margin: 10px 8px 0 0;
+  border-radius: 11px; background: linear-gradient(100deg,var(--cyan),var(--purple));
+  color: #071020; font-weight: bold;
+}
+.button.secondary { background: #ffffff09; color: var(--text); border: 1px solid #ffffff20; }
+.visual {
+  min-height: 310px; display: grid; place-items: center;
+  position: relative;
+}
+.orbit {
+  width: 260px; height: 260px; border-radius: 50%;
+  border: 1px solid #63e6f555; display: grid; place-items: center;
+  background: radial-gradient(circle,#63e6f522,transparent 70%);
+  box-shadow: 0 0 70px #7777ff16;
+}
+.core {
+  width: 105px; height: 105px; border-radius: 28px;
+  display: grid; place-items: center; font-size: 45px;
+  background: linear-gradient(135deg,#63e6f544,#a99bff44);
+  border: 1px solid #ffffff33;
+}
+.float {
+  position: absolute; padding: 12px 15px; border-radius: 13px;
+  background: var(--panel); border: 1px solid #ffffff20;
+  box-shadow: 0 10px 35px #0005; font-size: 14px;
+}
+.float small { display: block; color: var(--muted); margin-top: 4px; }
+.f1 { top: 20px; right: 0; }
+.f2 { bottom: 25px; left: 0; }
+.section-title {
+  display: flex; justify-content: space-between;
+  align-items: end; gap: 15px; margin: 30px 0 20px;
+}
+h2 { font-size: 32px; margin: 0; letter-spacing: -1px; }
+.section-title p { color: var(--muted); margin-bottom: 0; }
+.live { color: var(--cyan); font-size: 12px; letter-spacing: 1px; }
+.tools { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+input {
+  flex: 1; min-width: 190px; padding: 13px;
+  border-radius: 10px; border: 1px solid #ffffff20;
+  background: var(--panel); color: white; font-size: 15px;
+}
+.filter {
+  border: 1px solid #ffffff20; background: var(--panel);
+  color: var(--muted); padding: 11px 14px;
+  border-radius: 10px; cursor: pointer;
+}
+.filter.active { color: var(--cyan); border-color: var(--cyan); }
+.news-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 17px; }
+.card {
+  padding: 21px; min-height: 205px; display: flex; flex-direction: column;
+  border: 1px solid #ffffff15; border-radius: 16px;
+  background: linear-gradient(145deg,#151f36,#0d1425);
+  transition: transform .2s,border-color .2s;
+}
+.card:hover { transform: translateY(-4px); border-color: #63e6f566; }
+.category { color: var(--cyan); font-size: 11px; font-weight: bold; letter-spacing: 1px; }
+.card h3 { font-size: 18px; line-height: 1.5; margin: 13px 0 8px; }
+.card p { color: var(--muted); font-size: 14px; line-height: 1.7; }
+.read { color: var(--cyan); font-size: 14px; font-weight: bold; margin-top: auto; }
+.status { color: var(--muted); padding: 15px 0; }
+.features { display: grid; grid-template-columns: repeat(3,1fr); gap: 17px; margin: 45px 0 65px; }
+.feature { padding: 22px; border: 1px solid #ffffff18; border-radius: 15px; background: #ffffff05; }
+.feature .emoji { font-size: 30px; }
+.feature h3 { margin-bottom: 7px; }
+.feature p { color: var(--muted); line-height: 1.7; font-size: 14px; }
+footer { border-top: 1px solid #ffffff18; padding: 25px 0; color: var(--muted); font-size: 13px; }
+.footer-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+@media(max-width:760px) {
+  nav { display: none; }
+  .hero { grid-template-columns: 1fr; padding-top: 45px; }
+  .visual { min-height: 280px; }
+  .news-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media(max-width:520px) {
+  h1 { letter-spacing: -2px; }
+  .news-grid,.features { grid-template-columns: 1fr; }
+  .section-title { align-items: start; flex-direction: column; }
+  .orbit { width: 220px; height: 220px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#">✦ Nexora<span>World</span></a>
+    <nav>
+      <a href="#latest">Latest News</a>
+      <a href="#explore">Explore</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="pill" href="#latest">Explore ↗</a>
+  </div>
+</header>
+
+<main>
+  <section class="container hero">
+    <div>
+      <div class="eyebrow">● Your world, in focus</div>
+      <h1>Stay curious.<br>See the <span>bigger picture.</span></h1>
+      <p>World headlines, emerging AI technology, and useful updates — all in one clean, modern place.</p>
+      <a class="button" href="#latest">Read Latest News ↗</a>
+      <a class="button secondary" href="#explore">Explore Topics</a>
+    </div>
+    <div class="visual">
+      <div class="orbit"><div class="core">✦</div></div>
+      <div class="float f1">🌍 World News<small>Stories that matter</small></div>
+      <div class="float f2">🤖 AI & Innovation<small>Discover the future</small></div>
+    </div>
+  </section>
+
+  <section class="container" id="latest">
+    <div class="section-title">
+      <div><h2>Latest Headlines</h2><p>Recent stories from around the world.</p></div>
+      <span class="live">● LIVE NEWS FEED</span>
+    </div>
+    <div class="tools">
+      <input id="search" type="search" placeholder="Search headlines..." aria-label="Search headlines">
+      <button class="filter active" data-filter="all">All Stories</button>
+      <button class="filter" data-filter="world">World</button>
+      <button class="filter" data-filter="tech">Tech & AI</button>
+    </div>
+    <div id="news" class="news-grid">
+      <p class="status">Loading headlines...</p>
+    </div>
+    <p id="feed-status" class="status">Connecting to news feed...</p>
+  </section>
+
+  <section class="container" id="explore">
+    <div class="section-title"><div><h2>Explore More</h2><p>Ideas and updates for a fast-moving world.</p></div></div>
+    <div class="features">
+      <article class="feature"><div class="emoji">🌍</div><h3>World News</h3><p>Catch up on important stories and global developments.</p></article>
+      <article class="feature"><div class="emoji">🧠</div><h3>AI & Technology</h3><p>Discover smart tools, inventions, and future trends.</p></article>
+      <article class="feature"><div class="emoji">⛅</div><h3>Everyday Updates</h3><p>Find useful information and simple explainers.</p></article>
+    </div>
+  </section>
+
+  <section class="container" id="about" style="padding-bottom:50px">
+    <article class="feature">
+      <h3>About NexoraWorld</h3>
+      <p>NexoraWorld brings world news and technology together in one simple experience. Headlines are loaded from the website's news.json file when available.</p>
+    </article>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <span>© <span id="year"></span> NexoraWorld</span>
+    <span>Curiosity connects us to the world.</span>
+  </div>
+</footer>
+
 <script>
-const grid=document.getElementById('news-grid'),statusEl=document.getElementById('status'),search=document.getElementById('search'),filters=[...document.querySelectorAll('.filter')];let allNews=[],activeFilter='all';const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));function safeUrl(url){try{const u=new URL(url);return u.protocol==='https:'?u.href:'#'}catch{return '#'}}function dateLabel(s){if(!s)return 'Latest';const d=new Date(s);return isNaN(d)?String(s):d.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})}function category(item){return /ai|artificial intelligence|technology|tech|software|robot|cyber|digital|computer|science/i.test(((item.title||'')+' '+(item.category||'')))?'technology':'world'}function render(){const q=search.value.trim().toLowerCase(),items=allNews.filter(item=>(activeFilter==='all'||category(item)===activeFilter)&&(!q||((item.title||'')+' '+(item.description||'')+' '+(item.source||'')).toLowerCase().includes(q)));if(!items.length){grid.innerHTML='<div class="empty">No matching headlines found. Try another search or filter.</div>';return}grid.innerHTML=items.map(item=>{const cat=category(item),url=safeUrl(item.link||item.url||'#');return `<article class="news-card"><div class="card-meta"><span class="tag">${cat==='technology'?'Technology':'World'}</span><span class="date">${escapeHtml(dateLabel(item.date||item.pubDate||item.published))}</span></div><h3>${escapeHtml(item.title||'Untitled headline')}</h3><div class="card-foot"><span>${escapeHtml(item.source||'BBC News')}</span><a class="read" href="${url}" target="_blank" rel="noopener noreferrer">Read source ↗</a></div></article>`}).join('')}async function loadNews(){try{const response=await fetch('./news.json?updated='+Date.now(),{cache:'no-store'});if(!response.ok)throw new Error('Feed unavailable');const data=await response.json();allNews=Array.isArray(data)?data:(Array.isArray(data.articles)?data.articles:Array.isArray(data.news)?data.news:[]);if(!allNews.length)throw new Error('Empty feed');render();statusEl.innerHTML=`<strong>● Feed connected</strong> · ${allNews.length} headlines loaded`}catch(e){grid.innerHTML='<div class="empty"><strong>Headlines are temporarily unavailable.</strong><br>Please refresh later. The automatic news feed may still be publishing.</div>';statusEl.textContent='News feed unavailable right now. Please try again later.'}}filters.forEach(btn=>btn.addEventListener('click',()=>{filters.forEach(b=>b.classList.toggle('active',b===btn));activeFilter=btn.dataset.filter;render()}));search.addEventListener('input',render);loadNews();
-</script></body></html>
+const newsBox = document.getElementById("news");
+const feedStatus = document.getElementById("feed-status");
+const searchInput = document.getElementById("search");
+let stories = [];
+let filter = "all";
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function clean(value) {
+  return String(value || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function category(story) {
+  const text = (clean(story.title) + " " + clean(story.description) + " " + clean(story.category)).toLowerCase();
+  return /ai|artificial intelligence|technology|tech|digital|robot|cyber|software|gadget/.test(text) ? "tech" : "world";
+}
+
+function renderNews() {
+  const term = searchInput.value.toLowerCase().trim();
+  const filtered = stories.filter(story => {
+    const matchesFilter = filter === "all" || category(story) === filter;
+    const matchesSearch = (clean(story.title) + " " + clean(story.description)).toLowerCase().includes(term);
+    return matchesFilter && matchesSearch;
+  });
+
+  newsBox.replaceChildren();
+
+  if (!filtered.length) {
+    newsBox.innerHTML = '<p class="status">No matching stories found. Try another search.</p>';
+    return;
+  }
+
+  filtered.slice(0,18).forEach(story => {
+    const card = document.createElement("article");
+    card.className = "card";
+
+    const label = document.createElement("span");
+    label.className = "category";
+    label.textContent = category(story) === "tech" ? "TECH & AI" : "WORLD";
+
+    const title = document.createElement("h3");
+    title.textContent = clean(story.title) || "Untitled story";
+
+    const desc = document.createElement("p");
+    desc.textContent = clean(story.description || story.summary || "Open the story to read more.");
+
+    const link = document.createElement("a");
+    link.className = "read";
+    const url = story.link || story.url || "";
+    if (/^https?:\/\//i.test(url)) {
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Read full story ↗";
+    } else {
+      link.href = "#";
+      link.textContent = "Link unavailable";
+    }
+
+    card.append(label,title,desc,link);
+    newsBox.appendChild(card);
+  });
+}
+
+document.querySelectorAll(".filter").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+    button.classList.add("active");
+    filter = button.dataset.filter;
+    renderNews();
+  });
+});
+
+searchInput.addEventListener("input", renderNews);
+
+async function loadNews() {
+  try {
+    const response = await fetch("./news.json?updated=" + Date.now(), {cache:"no-store"});
+    if (!response.ok) throw new Error("news.json returned " + response.status);
+
+    const data = await response.json();
+    const items = Array.isArray(data) ? data : (data.articles || data.items || data.news || []);
+
+    stories = items.map(item => ({
+      title: item.title || item.name,
+      description: item.description || item.summary || item.contentSnippet || item.content || "",
+      link: item.link || item.url || item.guid || "",
+      category: item.category || ""
+    })).filter(item => item.title);
+
+    if (!stories.length) throw new Error("No headlines found in news.json");
+
+    feedStatus.textContent = "Loaded " + stories.length + " headlines.";
+    renderNews();
+  } catch (error) {
+    newsBox.innerHTML =
+      '<article class="card"><span class="category">NEWS FEED</span><h3>Headlines could not load</h3><p>Check that news.json exists next to index.html and contains a valid JSON list.</p><a class="read" href="./news.json">Open news.json ↗</a></article>';
+    feedStatus.textContent = "News feed unavailable: " + error.message;
+  }
+}
+loadNews();
+</script>
+</body>
+</html>
