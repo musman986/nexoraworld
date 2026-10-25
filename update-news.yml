@@ -1,0 +1,73 @@
+name: Update world news and publish site
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */6 * * *'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+
+      - name: Collect recent headlines from BBC RSS feeds
+        run: |
+          python - <<'PY'
+          import json, re, urllib.request, xml.etree.ElementTree as ET
+          from datetime import datetime, timezone
+          from html import unescape
+
+          feeds = [
+              ('World News', 'https://feeds.bbci.co.uk/news/world/rss.xml'),
+              ('Technology', 'https://feeds.bbci.co.uk/news/technology/rss.xml'),
+              ('Business', 'https://feeds.bbci.co.uk/news/business/rss.xml'),
+          ]
+          articles, seen = [], set()
+          for category, url in feeds:
+              try:
+                  req = urllib.request.Request(url, headers={'User-Agent':'NexoraWorldNewsBot/1.0 (RSS reader)'})
+                  with urllib.request.urlopen(req, timeout=20) as response:
+                      root = ET.fromstring(response.read())
+                  for item in root.findall('.//item'):
+                      title = (item.findtext('title') or '').strip()
+                      link = (item.findtext('link') or '').strip()
+                      desc = item.findtext('description') or ''
+                      desc = re.sub(r'<[^>]+>', ' ', unescape(desc))
+                      desc = re.sub(r'\s+', ' ', desc).strip()
+                      pub = (item.findtext('pubDate') or '').strip()
+                      if not title or not link or link in seen or not link.startswith('https://'):
+                          continue
+                      seen.add(link)
+                      articles.append({'category':category,'title':title,'link':link,'description':desc[:320], 'published':pub, 'source':'BBC News'})
+              except Exception as e:
+                  print(f'Could not read {category} feed: {e}')
+          articles.sort(key=lambda a: a.get('published',''), reverse=True)
+          payload = {'updatedAt':datetime.now(timezone.utc).isoformat(), 'articles':articles[:30]}
+          with open('news.json','w',encoding='utf-8') as f:
+              json.dump(payload,f,ensure_ascii=False,indent=2)
+          print(f'Wrote {len(payload["articles"])} headlines')
+          if not articles:
+              raise SystemExit('No RSS headlines were collected; refusing to publish an empty update.')
+          PY
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload website files
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Publish website
+        uses: actions/deploy-pages@v4
